@@ -17,11 +17,17 @@ def index(request):
     # The 'all()' is implied by default.
     num_authors = Author.objects.count()
 
+    # Challenge: добавляем метрики
+    genres_contain = Genre.objects.filter(name__contains='я').count()
+    books_contain = Book.objects.filter(title__contains='я').count()
+
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
         'num_authors': num_authors,
+        'genres_contain': genres_contain,
+        'books_contain': books_contain,
     }
 
     # Render the HTML template index.html with the data in the context variable
