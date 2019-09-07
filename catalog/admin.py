@@ -9,12 +9,22 @@ admin.site.register(Genre)  # SKurbatskiy 20190907 Создаём собстве
 # admin.site.register(BookInstance)  # SKurbatskiy 20190907 Создаём собственный вид страницы
 
 
+# Для показа данных по книгам на детальной странице с авторами
+class BooksInline(admin.TabularInline):
+    model = Book
+    # Сколько добавить пустых Instance для заполнения (по умолчанию почему-то ставит 3)
+    extra = 1
+
+
 # Define the admin class
 class AuthorAdmin(admin.ModelAdmin):
     # Перечисление полей, которые будут показываться вместо предыдущего __str__ из {self.last_name}, {self.first_name}
     list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
     # То, что сгруппирована в tuple, показывается горизонтально рядом друг с другом (не друг под другом)
     fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
+
+    # ссылка на класс, определенный выше, для подгрузки списка книг по этому автору
+    inlines = [BooksInline]
 
 
 # Register the admin class with the associated model
@@ -26,6 +36,7 @@ class BooksInstanceInline(admin.TabularInline):
     model = BookInstance
     # Сколько добавить пустых Instance для заполнения (по умолчанию почему-то ставит 3)
     extra = 1
+
 
 # Точно такой же эффект, как для Author, дают декораторы:
 # Register the Admin classes for Book using the decorator
