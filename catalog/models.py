@@ -40,6 +40,14 @@ class Book(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse('book-detail', args=[str(self.id)])
 
+    # Для того, чтобы в админке можно было прикрутить поле с жанром
+    # По умолчанию его нельзя просто так взять, так как оно с типом ManyToManyField
+    def display_genre(self):
+        """Create a string for the Genre. This is required to display genre in Admin."""
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = 'Genre'
+
 
 # Конкретные копии книг
 import uuid  # Required for unique book instances
