@@ -51,3 +51,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
             'fields': ('status', 'due_back')
         }),
     )
+
+    # Challenge - добавить на лист со списком инстансов поля book, status, due back date, and id
+    # вместо стандартного __str__()
+    list_display = ('book', 'status', 'due_back', 'id')
