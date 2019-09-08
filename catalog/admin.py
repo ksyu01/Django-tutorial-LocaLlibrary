@@ -5,7 +5,7 @@ from catalog.models import Author, Genre, Book, BookInstance
 
 # admin.site.register(Book)  # SKurbatskiy 20190907 Создаём собственный вид страницы
 # admin.site.register(Author)  # SKurbatskiy 20190907 Создаём собственный вид страницы
-admin.site.register(Genre)  # SKurbatskiy 20190907 Создаём собственный вид страницы
+admin.site.register(Genre)
 # admin.site.register(BookInstance)  # SKurbatskiy 20190907 Создаём собственный вид страницы
 
 
