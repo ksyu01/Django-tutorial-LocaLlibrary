@@ -38,5 +38,11 @@ def index(request):
 # это даёт больше надежности кода, меньше повторений и гораздо меньше усилий на обслуживание
 from django.views import generic
 
+
 class BookListView(generic.ListView):
+    model = Book
+
+
+# детальная страница для книг
+class BookDetailView(generic.DetailView):
     model = Book
