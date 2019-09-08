@@ -32,3 +32,11 @@ def index(request):
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
+
+# создание страницы со списком книг через базовый класс Django ListView
+# это даёт больше надежности кода, меньше повторений и гораздо меньше усилий на обслуживание
+from django.views import generic
+
+class BookListView(generic.ListView):
+    model = Book
