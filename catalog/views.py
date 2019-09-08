@@ -47,3 +47,14 @@ class BookListView(generic.ListView):
 # детальная страница для книг
 class BookDetailView(generic.DetailView):
     model = Book
+
+
+# страница списка авторов
+class AuthorListView(generic.ListView):
+    model = Author
+    paginate_by = 3
+
+
+# детальная страница для авторов
+class AuthorDetailView(generic.DetailView):
+    model = Author
