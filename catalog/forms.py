@@ -5,9 +5,9 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 
-class RenewBookForm(forms.BaseForm):
+class RenewBookForm(forms.Form):
     # в форме задаём поля, которые будут под ввод
-    renewal_date = forms.DateField(help_text="Enter a date between noew and 4 weeks (default 3)")
+    renewal_date = forms.DateField(help_text="Enter a date between now and 4 weeks (default 3)")
 
     # валидация значения - метод clean_<fieldname>()
     def clean_renewal_date(self):
@@ -21,7 +21,7 @@ class RenewBookForm(forms.BaseForm):
 
         # Check if a date is in the allowed range (+4 weeks from today)
         if data > datetime.date.today() + datetime.timedelta(weeks=4):
-            raise ValidationError(_("Invalid date - renrewal more than 4 weeks ahead"))
+            raise ValidationError(_("Invalid date - renewal more than 4 weeks ahead"))
 
         # Remember to always return the cleaned data
         return data

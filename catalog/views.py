@@ -112,7 +112,7 @@ from catalog.forms import RenewBookForm
 def renew_book_librarian(request, pk):
     """View function for renewing a specific BookInstance by librarian."""
     # по номеру primary key проверяем, существует ли такой BookInstance
-    book_instance = get_object_or_404(BookInstance, pk)
+    book_instance = get_object_or_404(BookInstance, pk=pk)
 
     # If this is a POST request then process the Form data
     # это обращение с заполненной формой
