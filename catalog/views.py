@@ -63,3 +63,20 @@ class AuthorListView(generic.ListView):
 # детальная страница для авторов
 class AuthorDetailView(generic.DetailView):
     model = Author
+
+
+# View для создания страницы со списком взятых книг для конкретного пользователя
+# LoginRequiredMixin - один из способов ограничить доступ только для тех, кто авторизован под этим пользователем
+# ещё один способ - декоратор @login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
+    """Generic class-based view listing books on loan to current user."""
+    model = BookInstance
+    # задаём template - чтобы не стандартный *model*_list, так как сможем делать несколько разных шаблонов
+    template_name = 'catalog/bookinstance_list_borrowed_user.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')

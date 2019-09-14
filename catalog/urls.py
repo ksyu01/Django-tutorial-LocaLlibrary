@@ -14,4 +14,6 @@ urlpatterns = [
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     # странциа author detail
     path('author/<int:pk>', views.AuthorDetailView.as_view(), name='author-detail'),
+    # страница со списком взятых книг для пользователя
+    path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
 ]
