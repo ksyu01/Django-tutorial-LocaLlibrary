@@ -33,6 +33,15 @@
                     {% endif %}
 
                 </ul>
+
+                <ul class="sidebar-nav">
+                    {# для тех, у кого есть permission can_mark_returned #}
+                    {% if perms.catalog.can_mark_returned %}
+                        <hr>
+                        <li>Staff</li>
+                        <li><a href="{% url 'all-borrowed' %}">All Borrowed</a></li>
+                    {% endif %}
+                </ul>
             {% endblock %}
         </div>
         <div class="col-sm-10 ">{% block content %}{% endblock %}

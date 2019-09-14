@@ -17,5 +17,5 @@ urlpatterns = [
     # страница со списком взятых книг для пользователя
     path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
     # страница со списком взятых книг для группы librarians
-    path('borrowed/', views.LoanedBooksByLibrariansListView.as_view(), name='all_borrowed'),
+    path('borrowed/', views.LoanedBooksByLibrariansListView.as_view(), name='all-borrowed'),
 ]
