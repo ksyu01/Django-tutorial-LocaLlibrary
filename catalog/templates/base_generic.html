@@ -19,8 +19,9 @@
                     <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'books' %}">All books</a></li>
                     <li><a href="{% url 'authors' %}">All authors</a></li>
+                </ul>
 
-
+                <ul class="sidebar-nav">
                     {# модуль с аутентификацией#}
                     {# ссылка ?next={{request.path}} нужна, чтобы вернуть юзера обратно на эту же страницу#}
                     {% if user.is_authenticated %}
