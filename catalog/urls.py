@@ -18,4 +18,6 @@ urlpatterns = [
     path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
     # страница со списком взятых книг для группы librarians
     path('borrowed/', views.LoanedBooksByLibrariansListView.as_view(), name='all-borrowed'),
+    # страницы формы с книгами
+    path('book/<uuid:pk>/renew/', views.renew_book_librarian, name='renew_book_librarian'),
 ]
