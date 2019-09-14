@@ -80,3 +80,18 @@ class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
+
+
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
+
+# Challenge
+# View для страницы группы librarians, работает только если у пользователя есть конкретный permission
+class LoanedBooksByLibrariansListView(PermissionRequiredMixin, generic.ListView):
+    model = BookInstance
+    template_name = 'catalog/bookinstance_list_borrowed_all.html'
+    paginate_by = 10
+    permission_required = ('catalog.can_mark_returned',)
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(status__exact='o').order_by('due_back')
