@@ -181,3 +181,25 @@ class AuthorDelete(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('authors')
     # эта модель ожидает template <model name>_confirm_delete.html
     permission_required = ('catalog.can_mark_returned',)
+
+
+# для книг
+from catalog.models import Book
+
+
+class BookCreate(PermissionRequiredMixin, CreateView):
+    model = Book
+    fields = '__all__'
+    permission_required = ('catalog.can_mark_returned',)
+
+
+class BookUpdate(PermissionRequiredMixin, UpdateView):
+    model = Book
+    fields = '__all__'
+    permission_required = ('catalog.can_mark_returned',)
+
+
+class BookDelete(PermissionRequiredMixin, DeleteView):
+    model = Book
+    success_url = reverse_lazy('books')
+    permission_required = ('catalog.can_mark_returned',)
