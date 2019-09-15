@@ -47,7 +47,7 @@ from django.views import generic
 
 class BookListView(generic.ListView):
     model = Book
-    paginate_by = 3
+    paginate_by = 10
 
 
 # детальная страница для книг
