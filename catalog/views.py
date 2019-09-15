@@ -151,6 +151,8 @@ def renew_book_librarian(request, pk):
     return render(request, 'catalog/book_renew_librarian.html', context)
 
 
+# view для управления записями с авторами
+# шаблоны ожидаются с именем modelname_form.html, но можно переопределить через template_name_suffix = '_other_suffix'
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -169,8 +171,10 @@ class AuthorCreate(CreateView):
 class AuthorUpdate(UpdateView):
     model = Author
     fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
+    # эти две модели ожидают template <model name>_form.html
 
 
 class AuthorDelete(DeleteView):
     model = Author
     success_url = reverse_lazy('authors')
+    # эта модель ожидает template <model name>_confirm_delete.html
