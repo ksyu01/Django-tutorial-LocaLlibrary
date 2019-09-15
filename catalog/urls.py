@@ -5,6 +5,7 @@ urlpatterns = [
     # в параметрах URL pattern
     # функция, которую нужно будет искать в модуле views и вызывать её
     # name - имя этого конкретного URL-маппинга
+    # .as_view() - чтобы использовать класс как view
     path('', views.index, name='index'),
     # ссылка на страницу со всеми книгами. view в виде класса, чтобы наследовать нужные свойства и не писать их заново
     path('books/', views.BookListView.as_view(), name='books'),
@@ -20,4 +21,8 @@ urlpatterns = [
     path('borrowed/', views.LoanedBooksByLibrariansListView.as_view(), name='all-borrowed'),
     # страницы формы с книгами
     path('book/<uuid:pk>/renew/', views.renew_book_librarian, name='renew_book_librarian'),
+    # страницы форм с редактированием авторов
+    path('author/create/', views.AuthorCreate.as_view(), name='author_create'),
+    path('author/<int:pk>/update/', views.AuthorUpdate.as_view(), name='author_update'),
+    path('author/<int:pk>/delete/', views.AuthorDelete.as_view(), name='author_delete'),
 ]
