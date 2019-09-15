@@ -159,22 +159,25 @@ from django.urls import reverse_lazy
 from catalog.models import Author
 
 
-class AuthorCreate(CreateView):
+class AuthorCreate(PermissionRequiredMixin, CreateView):
     model = Author
     fields = '__all__'
     # предлагаемое значение поля
     initial = {'date_of_death': '05/01/2018'}
     # по умолчанию после успешного выполнения будет редирект на страницу author detail
     # страницу можно переопределить с помощью success_url =
+    permission_required = ('catalog.can_mark_returned',)
 
 
-class AuthorUpdate(UpdateView):
+class AuthorUpdate(PermissionRequiredMixin, UpdateView):
     model = Author
     fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
     # эти две модели ожидают template <model name>_form.html
+    permission_required = ('catalog.can_mark_returned',)
 
 
-class AuthorDelete(DeleteView):
+class AuthorDelete(PermissionRequiredMixin, DeleteView):
     model = Author
     success_url = reverse_lazy('authors')
     # эта модель ожидает template <model name>_confirm_delete.html
+    permission_required = ('catalog.can_mark_returned',)
