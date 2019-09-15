@@ -149,3 +149,28 @@ def renew_book_librarian(request, pk):
     }
 
     return render(request, 'catalog/book_renew_librarian.html', context)
+
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+from catalog.models import Author
+
+
+class AuthorCreate(CreateView):
+    model = Author
+    fields = '__all__'
+    # предлагаемое значение поля
+    initial = {'date_of_death': '05/01/2018'}
+    # по умолчанию после успешного выполнения будет редирект на страницу author detail
+    # страницу можно переопределить с помощью success_url =
+
+
+class AuthorUpdate(UpdateView):
+    model = Author
+    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
+
+
+class AuthorDelete(DeleteView):
+    model = Author
+    success_url = reverse_lazy('authors')
